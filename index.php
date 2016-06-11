@@ -2,7 +2,6 @@
 include_once "./header.php";
 
 include_once "./lib/libatm.php";
-include_once "./lib/libtable.php";
 include_once "./lib/libcontrols.php";
 
 session_start();
