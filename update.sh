@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-WORK=machines/$1/work
+WORK=$1/$2/work
 
 if [ $# -eq 0 ]
   then 

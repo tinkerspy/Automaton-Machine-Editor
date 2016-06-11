@@ -15,7 +15,7 @@ $xml = $sm->as_xml();
 file_put_contents( "machines/". session_id(). "/new.atml", $xml );
 
 if ( md5( $xml ) !== $_SESSION['CHECKSUM'] ) { 
-  $r = shell_exec( "./update.sh ". session_id() );
+  $r = shell_exec( "./update.sh machines ". session_id() );
   $_SESSION['CHECKSUM'] = md5( $xml ); 
 }
 
