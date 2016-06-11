@@ -1,0 +1,45 @@
+
+.active {
+  background-color: #ccc;
+}
+
+.tabmenu {
+  text-decoration: none;
+  color: #000;
+}
+
+/*
+td {
+  text-align: center;
+}
+
+td.state_table_colh {
+
+  text-align: left;
+}
+
+table.state_table {
+        border-width: 1px;
+        border-spacing: 2px;
+        border-style: outset;
+        border-color: gray;
+        border-collapse: collapse;
+        background-color: rgb(255, 255, 240);
+}
+table.state_table th {
+        border-width: 1px;
+        padding: 2px;
+        border-style: inset;
+        border-color: gray;
+        background-color: white;
+        -moz-border-radius: ;
+}
+table.state_table td {
+        border-width: 1px;
+        padding: 2px;
+        border-style: inset;
+        border-color: gray;
+        background-color: white;
+        -moz-border-radius: ;
+}
+*/
