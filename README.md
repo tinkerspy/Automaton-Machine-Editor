@@ -5,5 +5,5 @@ Requirements:
 - PHP 5.3+
 - PHP session support enabled
 - Writable 'machines' subdirectory
-
+- Internet connection (for CDN based Javascript libraries)
 
