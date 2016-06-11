@@ -1,5 +1,13 @@
 <?php
 
+if ( !is_dir( "machines" ) ) {
+  die( "<br>FATAL: The 'machines' subdirectory does not exist<br>" );
+}
+
+if ( !is_writable( "machines" ) ) {
+  die( "<br>FATAL: The 'machines' subdirectory is not writable<br>" );
+}
+
 if ( !is_object( $coll ) ) {
   $coll = new ATM_Collection( $_SESSION["ATM_COLLECTION"] );
 }
