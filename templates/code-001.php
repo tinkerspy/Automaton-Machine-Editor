@@ -85,28 +85,27 @@ int <?php echo $sm->name() ?>::state( void ) {
         $key, ( $conn['slots'] > 1 && $conn['broadcast'] == 0 ) ? 'sub' : 0 );
       printf( " */\n\n" );
 
-      printf( "%s& %s::%s( Machine& machine, int event ) {", $sm->name(), $sm->name(), $fname ); // connectors, id, index, slots, fill, broadcast
-      printf( " onPush( connectors, ON_%s, %d, %d, 1, %d, machine, event );", $key, ( $conn['autostore'] > 0 ? -1 : 0 ), $conn['slots'], $conn['broadcast'] );
-      printf( " return *this; " );
-      printf( "}\n" );
+      printf( "%s& %s::%s( Machine& machine, int event ) {\n", $sm->name(), $sm->name(), $fname ); // connectors, id, index, slots, fill, broadcast
+      printf( "  onPush( connectors, ON_%s, %d, %d, 1, %d, machine, event );\n", $key, ( $conn['autostore'] > 0 ? -1 : 0 ), $conn['slots'], $conn['broadcast'] );
+      printf( "  return *this;\n" );
+      printf( "}\n\n" );
 
-      printf( "%s& %s::%s( atm_cb_push_t callback, int idx ) {", $sm->name(), $sm->name(), $fname );
-      printf( " onPush( connectors, ON_%s, %d, %d, 1, %d, callback, idx );", $key, ( $conn['autostore'] > 0 ? -1 : 0 ), $conn['slots'], $conn['broadcast'] );
-      printf( " return *this; " );
-      printf( "}\n" );
+      printf( "%s& %s::%s( atm_cb_push_t callback, int idx ) {\n", $sm->name(), $sm->name(), $fname );
+      printf( "  onPush( connectors, ON_%s, %d, %d, 1, %d, callback, idx );\n", $key, ( $conn['autostore'] > 0 ? -1 : 0 ), $conn['slots'], $conn['broadcast'] );
+      printf( "  return *this;\n" );
+      printf( "}\n\n" );
 
       if ( $conn['slots'] > 1 && $conn['autostore'] == 0 ) {
-        printf( "%s& %s::%s( int sub, Machine& machine, int event ) {", $sm->name(), $sm->name(), $fname );
-        printf( " onPush( connectors, ON_%s, sub, %d, 0, %d, machine, event );", $key, $conn['slots'], $conn['broadcast'] );
-        printf( " return *this; " );
-        printf( "}\n" );
+        printf( "%s& %s::%s( int sub, Machine& machine, int event ) {\n", $sm->name(), $sm->name(), $fname );
+        printf( "  onPush( connectors, ON_%s, sub, %d, 0, %d, machine, event );\n", $key, $conn['slots'], $conn['broadcast'] );
+        printf( "  return *this;\n" );
+        printf( "}\n\n" );
   
-        printf( "%s& %s::%s( int sub, atm_cb_push_t callback, int idx ) {", $sm->name(), $sm->name(), $fname );
-        printf( " onPush( connectors, ON_%s, sub, %d, 0, %d, callback, idx );", $key, $conn['slots'], $conn['broadcast'] );
-        printf( " return *this; " );
-        printf( "}\n" );
+        printf( "%s& %s::%s( int sub, atm_cb_push_t callback, int idx ) {\n", $sm->name(), $sm->name(), $fname );
+        printf( "  onPush( connectors, ON_%s, sub, %d, 0, %d, callback, idx );\n", $key, $conn['slots'], $conn['broadcast'] );
+        printf( "  return *this;\n" );
+        printf( "}\n\n" );
       }
-      echo "\n";
     }
   }
 ?>
