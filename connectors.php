@@ -21,7 +21,6 @@ if ( $_POST ) {
   if ( $_POST['cmd'] == 'clear' ) {
     $sm->clear_connectors();
   }
-
 }
 
 include_once "./navigation.php";

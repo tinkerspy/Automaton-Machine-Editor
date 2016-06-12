@@ -8,25 +8,21 @@ include_once "./navigation.php";
 
 $sm = $coll->first();
 
-$name = $sm->name();
-
-$short = preg_replace( '/^Atm_/', '', $name );
-
 echo "<pre><code class='cpp'>\n";
 ?>
 #include &lt;Automaton.h&gt;
-#include "<?php echo $name ?>.h"
+#include "<?php echo $sm->name() ?>.h"
 
 // Basic Arduino sketch - instantiates the state machine and nothing else
 
-<?php echo $name ?> <?php echo $short ?>;
+<?php echo $sm->name() ?> <?php echo $sm->short() ?>;
 
 void setup() {
 
   // Serial.begin( 9600 );
-  // <?php echo $short ?>.trace( Serial );
+  // <?php echo $sm->short() ?>.trace( Serial );
 
-  <?php echo $short ?>.begin() 
+  <?php echo $sm->short() ?>.begin() 
 
 }
 

@@ -342,6 +342,11 @@ class ATM_Machine {
     return $this->name;
   }
 
+  function short() {
+
+    return preg_replace( '/^Atm_/', '', $this->name() );
+  }
+
   function print_states() {
 
     foreach ( $this->states as $k => $v ) {
