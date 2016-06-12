@@ -22,7 +22,7 @@ void setup() {
   // Serial.begin( 9600 );
   // <?php echo $sm->short() ?>.trace( Serial );
 
-  <?php echo $sm->short() ?>.begin() 
+  <?php echo $sm->short() ?>.begin();
 
 }
 
