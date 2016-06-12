@@ -1,5 +1,5 @@
 <?php
-include_once "./header.php";
+include_once "./html/header.html";
 
 include_once "./lib/libatm.php";
 include_once "./lib/libcontrols.php";
@@ -134,5 +134,5 @@ if ( $coll->changed() ) {
   $_SESSION['ATM_COLLECTION'] = $coll->as_xml();
 }
 
-include_once "footer.php";
+include_once "./html/footer.html";
 ?>

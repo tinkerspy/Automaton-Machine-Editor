@@ -1,5 +1,5 @@
 <?php
-include_once "./header.php";
+include_once "./html/header.html";
 include_once "./lib/libatm.php";
 
 session_start();
@@ -18,5 +18,5 @@ echo htmlentities( file_get_contents( "machines/". session_id(). "/work/Machine.
 
 echo "</code>\n</pre>\n";
 
-include_once "footer.php";
+include_once "./html/footer.html";
 

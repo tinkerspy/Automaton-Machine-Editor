@@ -1,5 +1,5 @@
 <?php
-include_once "./header.php";
+include_once "./html/header.html";
 
 include_once "./lib/libatm.php";
 
@@ -27,4 +27,4 @@ Automaton::ATML::end
 */
 
 </code></pre>
-<?php include_once "footer.php" ?>
+<?php include_once "./html/footer.html" ?>
