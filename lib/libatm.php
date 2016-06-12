@@ -1,5 +1,12 @@
 <?php
 
+/* ATM_Collection & ATM_Machine
+ *
+ * Classes for manipulating (collections of) Automaton State Machine definitions
+ * Input and output as .atml XML files.
+ *
+ */
+
 define( "ATM_INDEX", "0" );
 define( "ATM_SLEEP", "1" );
 define( "ATM_ON_ENTER", "2" );

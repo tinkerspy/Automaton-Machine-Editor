@@ -46,7 +46,5 @@ if ( is_object( $sm ) ) {
 function menu_item( $url, $label, $enable = true ) {
  
   return sprintf( "<li class='%s'><a href='%s'>%s</a></li>\n",
-    preg_match( '/'.$url.'$/', $_SERVER['SCRIPT_NAME'] ) 
-    ? 'active' : ( $enable ? '' : 'disabled' ),
-    $url, $label );
+    preg_match( '/'.$url.'$/', $_SERVER['SCRIPT_NAME'] ) ? 'active' : ( $enable ? '' : 'disabled' ), $url, $label );
 }

@@ -1,6 +1,5 @@
 <?php
 include_once "./html/header.html";
-
 include_once "./lib/libatm.php";
 include_once "./lib/libcontrols.php";
 
@@ -30,7 +29,6 @@ if ( $_POST ) {
   if ( $_POST['cmd'] == 'clear' ) $sm->clear();
 }
 
-
 include_once "./navigation.php";
 
 $col_events = Array();
@@ -52,8 +50,6 @@ foreach ( $sm->events() as $event ) {
 $col_labels2 = array_merge( Array( 'Sleep', 'ENTER', 'LOOP', 'EXIT' ), $col_events2 );  
 
 echo "<form name='frm_editor' id='frm_editor' method='POST'>\n";
-
-
 echo "<table class='table table-condensed'>\n";
 echo "  <thead>\n";
 echo "    <tr>\n"; 
@@ -83,7 +79,6 @@ $state_label, $state_label, ( $state_label == $_POST['state_event'] ? "checked='
 } 
 echo "    </tr>\n";
 echo "  </tbody>\n";
-
 echo "</table>\n";
 
 ?>
@@ -129,10 +124,10 @@ echo "</table>\n";
 <br>
 <?php
 
-
 if ( $coll->changed() ) {
   $_SESSION['ATM_COLLECTION'] = $coll->as_xml();
 }
 
 include_once "./html/footer.html";
+
 ?>

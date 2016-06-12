@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Generates a .cpp template file from an xml defintion in the ATML env variable
+# Or from an ATML file given as an argument
+
 DIR=`dirname $0`
 
 if [ $# -ne 0 ]

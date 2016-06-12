@@ -1,6 +1,5 @@
 <?php
 include_once "./html/header.html";
-
 include_once "./lib/libatm.php";
 include_once "./lib/libcontrols.php";
 
@@ -65,13 +64,11 @@ if ( $_POST['txt_rename'] ) {
 
 include_once "./navigation.php"; 
 
-if ( $_FILES && !count( $coll->machines() ) ) {
-      ?>
-<div class="alert alert-danger">
- <strong>Warning</strong> No State Machine definition (ATML) was found in the uploaded file(s)
-</div>
-      <?php
-}
+if ( $_FILES && !count( $coll->machines() ) ) { ?>
+  <div class="alert alert-danger">
+   <strong>Warning</strong> No State Machine definition (ATML) was found in the uploaded file(s)
+  </div>
+<?php }
 
 $disabled = is_object( $sm ) ? '' : 'disabled';
 $modify = $_SESSION['MODIFY'];
@@ -181,5 +178,6 @@ if ( $coll->changed() ) {
 }
 
 include_once "./html/footer.html";
+
 ?>
 

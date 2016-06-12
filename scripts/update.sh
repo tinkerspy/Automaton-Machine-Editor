@@ -1,5 +1,8 @@
 #!/bin/bash 
 
+# Initializes a set of templates for the current PHP session
+# Optionally merges customized code with the new template (when MODIFY file exists)
+
 DIR=`dirname $0`
 
 WORK=${DIR}/../machines/$2/work
