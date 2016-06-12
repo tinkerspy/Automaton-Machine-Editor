@@ -9,6 +9,7 @@ if [ $# -eq 0 ]
 fi
 
 # Set up working directory
+
 rm -rf $WORK
 mkdir $WORK
 cd $WORK
@@ -16,7 +17,7 @@ cd $WORK
 
 if [ -f ../MODIFY ];
   then
-     echo "Merging code with new template.."
+    echo "Merging code with new template.."
 
     # Set up temporary git repository
     git init --quiet

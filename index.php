@@ -140,14 +140,14 @@ $hdr_ext = $_SESSION['HPPMODE'] ? 'hpp' : 'h';
   <tbody>
     <tr>
       <td style="text-align: left">
-        <a href='hsave-template.php'>
+        <a href='export/hsave-template.php'>
           <span class='glyphicon glyphicon-floppy-disk'></span>
             <?php echo is_object( $sm ) ? $sm->name(). '.'. $hdr_ext : '' ?>
         </a>
       </td>
       <td style="text-align: left">
         <?php if ( $modify ) { ?>
-        <a href='hsave.php'>
+        <a href='export/hsave.php'>
           <span class='glyphicon glyphicon-floppy-disk'></span>
             <?php echo is_object( $sm ) ? $sm->name(). '.'. $hdr_ext : '' ?>
         </a>
@@ -156,14 +156,14 @@ $hdr_ext = $_SESSION['HPPMODE'] ? 'hpp' : 'h';
     </tr>
     <tr>
       <td style="text-align: left">
-        <a href='cppsave-template.php'>
+        <a href='export/cppsave-template.php'>
           <span class='glyphicon glyphicon-floppy-disk'></span>
             <?php echo is_object( $sm ) ? $sm->name(). '.cpp' : '' ?>
         </a>
       </td>
       <td style="text-align: left">
         <?php if ( $modify ) { ?>
-        <a href='cppsave.php'>
+        <a href='export/cppsave.php'>
           <span class='glyphicon glyphicon-floppy-disk'></span>
             <?php echo is_object( $sm ) ? $sm->name(). '.cpp' : '' ?>
         </a>
