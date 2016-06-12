@@ -1,6 +1,5 @@
 <?php
 
-
 include_once "./lib/libatm.php";
 
 session_start();
