@@ -24,7 +24,7 @@ $sm = $coll->first();
     </div>
     <ul class="nav navbar-nav">
       <?php echo menu_item( 'index.php', 'File' ) ?> 
-      <?php echo menu_item( 'editor.php', 'Editor', is_object( $sm ) ) ?> 
+      <?php echo menu_item( 'editor.php', 'States', is_object( $sm ) ) ?> 
       <?php echo menu_item( 'connectors.php', 'Connectors', is_object( $sm ) ) ?> 
       <?php echo menu_item( 'cppheader.php', $_SESSION['HPPMODE'] ? '.hpp' : '.h', is_object( $sm ) ) ?> 
       <?php echo menu_item( 'cppcode.php', '.cpp', is_object( $sm ) ) ?> 

@@ -593,6 +593,11 @@ class ATM_Machine {
     return $this->changed;
   }
 
+  function hash() {
+    
+    return md5( $this->as_xml() );
+  }
+
 }
 
 

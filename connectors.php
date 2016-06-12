@@ -32,7 +32,7 @@ include_once "./navigation.php";
 <form name="frm_editor" id="frm_editor" method='POST'>
 <table class='table'>
   <thead>
-    <tr>
+    <tr class='info'>
       <th>Name</th>
       <th>Direction</th>
       <th>Slots</th>
@@ -43,7 +43,7 @@ include_once "./navigation.php";
   <tbody>
 <?php
   foreach ( $sm->get_connectors() as $conn_name => $conn_row ) {
-    printf( "    <tr>\n      <td>%s</td>\n<td>%s</td>\n<td>%s</td>\n<td>%s</td>\n<td>%s</td>\n    </tr>\n", 
+    printf( "    <tr class='warning'>\n      <td>%s</td>\n<td>%s</td>\n<td>%s</td>\n<td>%s</td>\n<td>%s</td>\n    </tr>\n", 
       sprintf( "<input type='radio' name='conn_radio' id='radio_%s' value='%s'> <label for='radio_%s'>%s</label>",
         $conn_name, $conn_name, $conn_name, $conn_name ), 
       $conn_row['dir'], 

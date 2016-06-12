@@ -10,9 +10,9 @@ include_once "./navigation.php";
 $xml = $sm->as_xml();
 file_put_contents( "machines/". session_id(). "/new.atml", $xml );
 
-if ( md5( $xml ) !== $_SESSION['CHECKSUM'] ) { 
+if ( $sm->hash() !== $_SESSION['CHECKSUM'] ) { 
   $r = shell_exec( "./update.sh machines ". session_id() );
-  $_SESSION['CHECKSUM'] = md5( $xml ); 
+  $_SESSION['CHECKSUM'] = $sm->hash(); 
 }
 
 echo "<pre><code class='cpp'>\n";
