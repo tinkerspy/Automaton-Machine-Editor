@@ -1,6 +1,8 @@
 # Automaton-Machine-Editor
 Web based editor - Generates templates for table based Automaton State Machines
 
+https://github.com/tinkerspy/Automaton/wiki
+
 Requirements:
 - PHP 5+ (5.3 tested)
 - PHP session support enabled
