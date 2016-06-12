@@ -1,2 +1,4 @@
 machines/
 test/
+*.swp
+
