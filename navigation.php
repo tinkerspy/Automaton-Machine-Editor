@@ -17,7 +17,7 @@ $sm = $coll->first();
 <nav class="navbar navbar-inverse">
   <div class="container-fluid"> 
     <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/tinkerspy/Automaton/wiki">
+      <a class="navbar-brand" target='_blank' href="https://github.com/tinkerspy/Automaton/wiki">
         <span class='glyphicon glyphicon-cog'></span> 
         Automaton
       </a>
