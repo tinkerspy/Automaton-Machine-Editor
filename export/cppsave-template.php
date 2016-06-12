@@ -12,7 +12,7 @@ header('Content-Disposition: attachment; filename="'.$sm->name(). '.cpp"');
 
 if ( $sm->hash() !== $_SESSION['HASH'] ) { 
   file_put_contents( "../machines/". session_id(). "/new.atml", $sm->as_xml() );
-  $r = shell_exec( "../update.sh ../machines ". session_id() );
+  $r = shell_exec( "../scripts/update.sh ../machines ". session_id() );
   $_SESSION['HASH'] = $sm->hash(); 
 }
 

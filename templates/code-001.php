@@ -1,6 +1,6 @@
 <?php
 
-include_once "lib/libatm.php";
+include_once "libatm.php";
 
 if ( getenv( 'ATML' ) ) {
   $coll = new ATM_Collection( getenv( "ATML" ) );
