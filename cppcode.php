@@ -7,12 +7,10 @@ session_start();
 
 include_once "./navigation.php";
 
-$xml = $sm->as_xml();
-file_put_contents( "machines/". session_id(). "/new.atml", $xml );
-
-if ( $sm->hash() !== $_SESSION['CHECKSUM'] ) { 
+if ( $sm->hash() !== $_SESSION['HASH'] ) { 
+  file_put_contents( "machines/". session_id(). "/new.atml", $sm->as_xml() );
   $r = shell_exec( "./update.sh machines ". session_id() );
-  $_SESSION['CHECKSUM'] = $sm->hash(); 
+  $_SESSION['HASH'] = $sm->hash(); 
 }
 
 echo "<pre><code class='cpp'>\n";

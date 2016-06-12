@@ -46,7 +46,7 @@ if ( $_FILES ) {
     }
     file_put_contents( "machines/". session_id(). "/original.atml", $sm->as_xml() );
   }
-  $_SESSION['CHECKSUM'] = 0;
+  $_SESSION['HASH'] = 0;
   $coll->changed( true );
 }
 
@@ -54,7 +54,7 @@ if ( $_POST['create'] ) {
   @mkdir( "machines/". session_id() );
   $sm = $coll->clear()->machine( 'Atm_machine' );
   @unlink( "machines/". session_id(). "/MODIFY" );
-  $_SESSION['CHECKSUM'] = 0;
+  $_SESSION['HASH'] = 0;
   $_SESSION['MODIFY'] = 0;
   $_SESSION['HPPMODE'] = 0;
 }
