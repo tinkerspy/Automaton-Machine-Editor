@@ -25,27 +25,9 @@ if ( $_POST ) {
 
 }
 
-
 include_once "./navigation.php";
 
-
 ?>
-<script>
-$(document).ready(function() {
-
-    $(".cb_autostore").change(function() {
-       $.get( "ajax/conn_autostore.php", { 'value': $(this).is(':checked') ? 1 : 0, 'conn':  $(this).attr("name") } );
-    });
-    $(".cb_broadcast").change(function() {
-       $.get( "ajax/conn_broadcast.php", { 'value': $(this).is(':checked') ? 1 : 0, 'conn':  $(this).attr("name") } );
-    });
-
-    $('.sb_slots').on('change', function() {
-      $.get( "ajax/conn_slots.php", { 'conn': this.name, 'value': this.value } );
-    });
-});
-
-</script>
 
 <form name="frm_editor" id="frm_editor" method='POST'>
 <table class='table'>
