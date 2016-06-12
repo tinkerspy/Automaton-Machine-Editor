@@ -8,7 +8,6 @@ if ( getenv( 'ATML' ) ) {
 }
 
 ?>
-
 #include <Automaton>
 #include "<?php echo $sm->name() ?>.h"
 

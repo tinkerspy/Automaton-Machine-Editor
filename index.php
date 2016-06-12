@@ -167,6 +167,16 @@ $hdr_ext = $_SESSION['HPPMODE'] ? 'hpp' : 'h';
         <?php } ?>
       </td>
     </tr>
+    <tr>
+      <td style="text-align: left">
+        <a href='export/sketch-template.php'>
+          <span class='glyphicon glyphicon-floppy-disk'></span>
+            <?php echo is_object( $sm ) ? $sm->short(). '.ino' : '' ?>
+        </a>
+      </td>
+      <td style="text-align: left">
+      </td>
+    </tr>
   </tbody>
 </table>
 
