@@ -16,8 +16,7 @@ if ( $sm->hash() !== $_SESSION['HASH'] ) {
   $_SESSION['HASH'] = $sm->hash(); 
 }
 
-$txt = file_get_contents( "machines/". session_id(). "/Template.h" );
-echo preg_replace( '/\n/s', "\r\n", $txt );
+echo preg_replace( '/\n/s', "\r\n", file_get_contents( "machines/". session_id(). "/Template.h" ) );
 
 ?>
 /*
