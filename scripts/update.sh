@@ -30,6 +30,7 @@ if [ -f ../MODIFY ];
     # Recreate the original template from ATML
     ../../../scripts/code.sh ../original.atml > Machine.cpp
     ../../../scripts/header.sh ../original.atml > Machine.h
+    ../../../scripts/sketch.sh ../original.atml > sketch.ino
     git add .
     git commit -m "Initial commit" --quiet
 
@@ -39,8 +40,10 @@ if [ -f ../MODIFY ];
     rm Machine.cpp Machine.h
     ../../../scripts/code.sh ../new.atml > Machine.cpp
     ../../../scripts/header.sh ../new.atml > Machine.h
+    ../../../scripts/sketch.sh ../new.atml > sketch.ino
     cp Machine.cpp ../Template.cpp
     cp Machine.h ../Template.h
+    cp sketch.ino ../Template.ino
     git add .
     git commit -m "Updated template" --quiet
 
@@ -49,6 +52,7 @@ if [ -f ../MODIFY ];
     rm Machine.cpp Machine.h
     cat ../Machine.cpp | tr -d '\r' > Machine.cpp
     cat ../Machine.h | tr -d '\r' > Machine.h
+    cat ../sketch.ino | tr -d '\r' > sketch.ino
     git add .
     git commit -m "Custom code" --quiet
 
@@ -57,12 +61,15 @@ if [ -f ../MODIFY ];
     git merge -X ours master
     cp Machine.cpp ../New-machine.cpp
     cp Machine.h ../New-machine.h
+    cp sketch.ino ../New-sketch.ino
   else
     echo "Initializing template..."
     ../../../scripts/code.sh ../new.atml > Machine.cpp
     ../../../scripts/header.sh ../new.atml > Machine.h
+    ../../../scripts/sketch.sh ../new.atml > sketch.ino
     cp Machine.cpp ../Template.cpp
     cp Machine.h ../Template.h
+    cp sketch.ino ../Template.ino
 fi
 
 
