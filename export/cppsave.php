@@ -18,3 +18,5 @@ if ( $sm->hash() !== $_SESSION['HASH'] ) {
 
 echo preg_replace( '/\n/s', "\r\n", file_get_contents( "../machines/". session_id(). "/work/Machine.cpp" ) );
 
+?>
+
