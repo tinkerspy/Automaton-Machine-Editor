@@ -88,24 +88,24 @@ int <?php echo $sm->name() ?>::state( void ) {
         ( $broadcast ? "$key | ATM_BROADCAST" : $key ), ( $slots > 1 && $broadcast == 0 ) ? 'sub' : ( $broadcast ? $slots : '0' ) );
       printf( " */\n\n" );
 
-      printf( "%s& %s::%s( Machine& machine, int event ) {\n", $sm->name(), $sm->name(), $fname ); // connectors, id, index, slots, fill, broadcast
-      printf( "  onPush( connectors, ON_%s, %d, %d, %d, %d, machine, event );\n", $key, ( $autostore ? -1 : 0 ), $slots, ( $autostore ? 0 : 1 ), $broadcast );
+      printf( "%s& %s::%s( Machine& machine, int event ) {\n", $sm->name(), $sm->name(), $fname ); // connectors, id, index, slots, fill
+      printf( "  onPush( connectors, ON_%s, %d, %d, %d, machine, event );\n", $key, ( $autostore ? -1 : 0 ), $slots, ( $autostore ? 0 : 1 ) );
       printf( "  return *this;\n" );
       printf( "}\n\n" );
 
       printf( "%s& %s::%s( atm_cb_push_t callback, int idx ) {\n", $sm->name(), $sm->name(), $fname );
-      printf( "  onPush( connectors, ON_%s, %d, %d, %d, %d, callback, idx );\n", $key, ( $autostore ? -1 : 0 ), $slots, ( $autostore ? 0 : 1 ), $broadcast );
+      printf( "  onPush( connectors, ON_%s, %d, %d, %d, callback, idx );\n", $key, ( $autostore ? -1 : 0 ), $slots, ( $autostore ? 0 : 1 ) );
       printf( "  return *this;\n" );
       printf( "}\n\n" );
 
       if ( $slots > 1 && !$autostore ) {
         printf( "%s& %s::%s( int sub, Machine& machine, int event ) {\n", $sm->name(), $sm->name(), $fname );
-        printf( "  onPush( connectors, ON_%s, sub, %d, 0, %d, machine, event );\n", $key, $slots, $broadcast );
+        printf( "  onPush( connectors, ON_%s, sub, %d, 0, machine, event );\n", $key, $slots );
         printf( "  return *this;\n" );
         printf( "}\n\n" );
   
         printf( "%s& %s::%s( int sub, atm_cb_push_t callback, int idx ) {\n", $sm->name(), $sm->name(), $fname );
-        printf( "  onPush( connectors, ON_%s, sub, %d, 0, %d, callback, idx );\n", $key, $slots, $broadcast );
+        printf( "  onPush( connectors, ON_%s, sub, %d, 0, callback, idx );\n", $key, $slots );
         printf( "  return *this;\n" );
         printf( "}\n\n" );
       }
