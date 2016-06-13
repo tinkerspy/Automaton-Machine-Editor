@@ -11,3 +11,6 @@ $sm = $coll->first();
 $sm->set_connector( $_GET['conn'], 'broadcast', $_GET['value'] * 1 );
 
 $_SESSION["ATM_COLLECTION"] = $coll->as_xml();
+
+?>
+

@@ -12,4 +12,5 @@ $sm->link( $_GET['state'], $_GET['event'], $_GET['new'] );
 
 $_SESSION["ATM_COLLECTION"] = $coll->as_xml();
 
+?>
 

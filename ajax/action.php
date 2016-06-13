@@ -11,3 +11,6 @@ $sm = $coll->first();
 $sm->action( $_GET['state'], $_GET['action'], $_GET['value'] );
 
 $_SESSION["ATM_COLLECTION"] = $coll->as_xml();
+
+?>
+

@@ -14,3 +14,5 @@ $sm->set_connector( $_GET['conn'], 'slots', $_GET['value'] * 1 );
 
 $_SESSION["ATM_COLLECTION"] = $coll->as_xml();
 
+?>
+
