@@ -85,7 +85,7 @@ int <?php echo $sm->name() ?>::state( void ) {
       printf( "/* %s() push connector variants ( slots %d, autostore %d, broadcast %d )\n *\n", 
         $fname, $slots, $autostore, $broadcast  );
       printf( " * Usage in action() handler: push( connectors, ON_%s, %s, v, up );\n", 
-        $key, ( $slots > 1 && $broadcast == 0 ) ? 'sub' : '0' );
+        ( $broadcast ? "$key | ATM_BROADCAST" : $key ), ( $slots > 1 && $broadcast == 0 ) ? 'sub' : ( $broadcast ? $slots : '0' ) );
       printf( " */\n\n" );
 
       printf( "%s& %s::%s( Machine& machine, int event ) {\n", $sm->name(), $sm->name(), $fname ); // connectors, id, index, slots, fill, broadcast
