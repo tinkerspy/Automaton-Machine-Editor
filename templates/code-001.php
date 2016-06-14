@@ -41,6 +41,21 @@ int <?php echo $sm->name() ?>::event( int id ) {
 
 /* Add C++ code for each action
  * This generates the 'output' for the state machine
+<?php
+  if ( $sm->get_connectors() ) {
+    echo " *\n * Available connectors:\n";
+    foreach ( $sm->get_connectors() as $key => $conn ) {
+      if ( $conn['dir'] == 'PUSH' ) {
+        $slots = (int) $conn['slots'];
+        $autostore = (int) $conn['autostore'] > 0;
+        $broadcast = (int) $conn['broadcast'] > 0;
+        $fname = 'on'. ucfirst( strtolower( $key ) );
+        printf( " *   push( connectors, ON_%s, %s, <v>, <up> );\n", 
+          ( $broadcast ? "$key | ATM_BROADCAST" : $key ), ( $slots > 1 && $broadcast == 0 ) ? '<sub>' : ( $broadcast ? $slots : '0' ) );
+      }
+    }
+  }
+?>
  */
 
 void <?php echo $sm->name() ?>::action( int id ) {
@@ -82,10 +97,8 @@ int <?php echo $sm->name() ?>::state( void ) {
       $broadcast = (int) $conn['broadcast'] > 0;
       $fname = 'on'. ucfirst( strtolower( $key ) );
 
-      printf( "/* %s() push connector variants ( slots %d, autostore %d, broadcast %d )\n *\n", 
+      printf( "/*\n * %s() push connector variants ( slots %d, autostore %d, broadcast %d )\n", 
         $fname, $slots, $autostore, $broadcast  );
-      printf( " * Usage in action() handler: push( connectors, ON_%s, %s, v, up );\n", 
-        ( $broadcast ? "$key | ATM_BROADCAST" : $key ), ( $slots > 1 && $broadcast == 0 ) ? 'sub' : ( $broadcast ? $slots : '0' ) );
       printf( " */\n\n" );
 
       printf( "%s& %s::%s( Machine& machine, int event ) {\n", $sm->name(), $sm->name(), $fname ); // connectors, id, index, slots, fill
