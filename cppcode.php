@@ -4,6 +4,8 @@ include_once "./lib/libatm.php";
 
 session_start();
 
+if ( !$_SESSION["ATM_COLLECTION"] ) return( header( "Location: index.php" ) );
+
 include_once "./navigation.php";
 
 if ( $sm->hash() !== $_SESSION['HASH'] ) { 

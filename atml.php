@@ -5,6 +5,8 @@ include_once "./lib/libcontrols.php";
 
 session_start();
 
+if ( !$_SESSION["ATM_COLLECTION"] ) return( header( "Location: index.php" ) );
+
 include_once "./navigation.php";
 
 $sm = $coll->first();

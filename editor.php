@@ -5,6 +5,8 @@ include_once "./lib/libcontrols.php";
 
 session_start();
 
+if ( !$_SESSION["ATM_COLLECTION"] ) return( header( "Location: index.php" ) );
+
 // Idee: rename acties bewaren en dan direct op de source code uitvoeren alvorens te mergen...
 
 $coll = new ATM_Collection( $_SESSION["ATM_COLLECTION"] );
@@ -60,24 +62,35 @@ foreach ( $col_labels2 as $k => $v ) {
 echo "    </tr>\n";
 echo "  </thead>\n";
 echo "  <tbody>\n";
-echo "    <tr>\n";
 
 foreach ( $sm->table_dump() as $state_label => $state_row ) {
-printf( "<th class='info'><input type=radio name='state_event' id='radio_%s' value='%s' %s> <label for='radio_%s'>%s</label></th>",
+printf( "  <tr>\n    <th class='info'><input type=radio name='state_event' id='radio_%s' value='%s' %s>\n      <label for='radio_%s'>%s</label>\n    </th>\n",
 $state_label, $state_label, ( $state_label == $_POST['state_event'] ? "checked='checked'" : '' ), $state_label, $state_label );
   for ( $i = 0; $i < 4; $i++ ) {
     $class = $i > 0 ? 'success' : 'danger';
-    printf( '<th class="text-center %s"><label class="checkbox-inline"><input type="checkbox" class="action_check" name="%s" %s></label></th>', $class, "$state_label:". ($i + 1), $state_row[$i] ? 'checked' : '' );  
+    printf( "    <td class='text-center %s'><label class='checkbox-inline'>".
+             "<input type='checkbox' class='action_check' name='%s' %s></label></td>\n", 
+             $class, "$state_label:". ($i + 1), $state_row[$i] ? 'checked' : '' );  
   }
   foreach ( $sm->events() as $idx => $event ) {
     $class = $event == 'ELSE' ? 'danger' : 'warning';
-    printf( "<th class='$class text-center'>%s</th>", selectbox( "${state_label}:${event}", 
+    printf( "  <td class='$class text-center'>%s  </td>\n", selectbox( "${state_label}:${event}", 
              array_merge( Array( "-" ), $sm->states() ), 
              $state_row[$idx + 4] ? $state_row[$idx + 4] : '-', 1, "class='link_state'" ) );
   }
-  echo "</tr>";
+  echo "  </tr>\n";
 } 
-echo "    </tr>\n";
+echo "  <tr class='info'>\n";
+echo "    <td></td><td></td><td></td><td></td><th class='text-center'>Event:</th>\n";
+foreach ( $sm->events() as $idx => $event ) {
+  if ( $event != 'ELSE' ) {
+    printf( "    <td class='text-center'>%s</td>\n", 
+      selectbox( "${event}", Array( "Private", "Public", "Mixed" ) ) );
+  }
+}
+echo "    <td></td>\n";
+echo "  </tr>\n";
+
 echo "  </tbody>\n";
 echo "</table>\n";
 

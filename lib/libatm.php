@@ -132,6 +132,7 @@ class ATM_Collection {
 
 class ATM_Machine {
   var $event_labels = Array( 'ELSE' );
+  var $event_access = Array();
   var $state_labels = Array( "STATE", "INDEX", "SLEEP", "ON_ENTER", "ON_LOOP", "ON_EXIT" );
   var $connectors = Array();
   var $states = Array();
