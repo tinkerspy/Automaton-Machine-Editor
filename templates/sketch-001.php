@@ -8,7 +8,7 @@ if ( getenv( 'ATML' ) ) {
 }
 
 ?>
-#include <Automaton>
+#include <Automaton.h>
 #include "<?php echo $sm->name() ?>.h"
 
 // Basic Arduino sketch - instantiates the state machine and nothing else
