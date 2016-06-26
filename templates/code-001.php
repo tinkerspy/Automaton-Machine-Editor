@@ -68,24 +68,6 @@ void <?php echo $sm->name() ?>::action( int id ) {
   }
 }
 
-/* Public event methods
- *
- */
-
-<?php
-  foreach ( $sm->events() as $event ) {
-    if ( $event != 'ELSE' && ( $sm->access( $event ) != ATM_ACCESS_PRIVATE ) ) {
-      $fname = preg_replace( '/^evt_/', '', strtolower( $event ) );
-?>
-<?php echo $sm->name() ?>& <?php echo $sm->name()."::$fname()"; ?> {
-  trigger( <?php echo $event ?> );
-  return *this;
-}
-
-<?php
-    }
-  }
-?>
 /* Optionally override the default trigger() method
  * Control how your machine processes triggers
  */
@@ -107,6 +89,24 @@ int <?php echo $sm->name() ?>::state( void ) {
  ************************************************************************************************
 */
 
+/* Public event methods
+ *
+ */
+
+<?php
+  foreach ( $sm->events() as $event ) {
+    if ( $event != 'ELSE' && ( $sm->access( $event ) != ATM_ACCESS_PRIVATE ) ) {
+      $fname = preg_replace( '/^evt_/', '', strtolower( $event ) );
+?>
+<?php echo $sm->name() ?>& <?php echo $sm->name()."::$fname()"; ?> {
+  trigger( <?php echo $event ?> );
+  return *this;
+}
+
+<?php
+    }
+  }
+?>
 <?php
   foreach ( $sm->get_connectors() as $key => $conn ) {
     if ( $conn['dir'] == 'PUSH' ) {

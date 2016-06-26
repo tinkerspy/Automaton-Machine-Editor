@@ -32,7 +32,7 @@ class ATM_Collection {
     'ATM_UP', 'ATM_DOWN', 'ATM_NOP', 'ATM_ON_SWITCH', 'ATM_ON_ENTER', 'ATM_ON_LOOP', 'ATM_ON_EXIT', 'ATM_TIMER_OFF', 'ATM_COUNTER_OFF',  
   );
   var $reserved_events = Array( // Uppercase reserved words that may clash with event names (custom methods)
-    'BEGIN', 'EVENT', 'ACTION', 'TRACE',
+    'BEGIN', 'EVENT', 'ACTION', 'TRACE', 'STATE', 'SLEEP', 'TRIGGER', 'CYCLE',
   );
 
 
