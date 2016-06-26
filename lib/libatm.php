@@ -24,12 +24,15 @@ define( "ATM_ACCESS_PRIVATE", "2" );
 class ATM_Collection {
   var $collection = Array();
   var $changed = false;
-  var $reserved_words = Array( // Uppercase reserved words that may clash with state names
+  var $reserved_states = Array( // Uppercase reserved words that may clash with state names
     'D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15', 'D16', 'D17', 'D18', 'D19',
     'A0', 'A1', 'A2', 'A3', 'A4', 'A5',
     'BIN', 'OCT', 'DEC', 'HEX', 
     'ATM_SLEEP_FLAG', 'ATM_CYCLE_FLAG', 'ATM_USR1_FLAG', 'ATM_USR2_FLAG', 'ATM_USR3_FLAG', 'ATM_USR4_FLAG', 'ATM_USR_FLAGS', 'ATM_BROADCAST',
     'ATM_UP', 'ATM_DOWN', 'ATM_NOP', 'ATM_ON_SWITCH', 'ATM_ON_ENTER', 'ATM_ON_LOOP', 'ATM_ON_EXIT', 'ATM_TIMER_OFF', 'ATM_COUNTER_OFF',  
+  );
+  var $reserved_events = Array( // Uppercase reserved words that may clash with event names (custom methods)
+    'BEGIN', 'EVENT', 'ACTION', 'TRACE',
   );
 
 
@@ -51,10 +54,20 @@ class ATM_Collection {
     return -1;   
   }
 
-  function reserved( $label ) {
+  function reserved_state( $label ) {
 
     $label = preg_replace( '/[^a-z0-9_]/i', '', strtoupper( trim( $label ) ) );
-    if ( $label && !in_array( $label, $this->reserved_words ) && !preg_match( '/^(\d|EVT_|ENT_|LP_|EXT_|ON_)/', $label ) ) {
+    if ( $label && !in_array( $label, $this->reserved_states ) && !preg_match( '/^(\d|EVT_|ENT_|LP_|EXT_|ON_)/', $label ) ) {
+      return null;
+    } else {
+      return $label;
+    }
+  }
+
+  function reserved_event( $label ) {
+
+    $label = preg_replace( '/[^a-z0-9_]/i', '', strtoupper( trim( $label ) ) );
+    if ( $label && !in_array( $label, $this->reserved_events ) && !preg_match( '/^(\d)/', $label ) ) {
       return null;
     } else {
       return $label;

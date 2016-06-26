@@ -17,7 +17,7 @@ $sm = $coll->first();
 if ( $_POST ) {
   if ( $_POST['cmd'] == 'add_state' && $_POST['add_text'] ) {
     foreach ( preg_split( '/\s+/', $_POST['add_text'] ) as $p ){
-      if ( $label = $coll->reserved( $p ) ) {
+      if ( $label = $coll->reserved_state( $p ) ) {
         $error_msg = "$label is a reserved word";
       } else {
         $sm->add_state( $p );
@@ -26,7 +26,11 @@ if ( $_POST ) {
   }
   if ( $_POST['cmd'] == 'add_event' && $_POST['add_text'] ) {
     foreach ( array_reverse( preg_split( '/\s+/', $_POST['add_text'] ) ) as $p ){
-      $sm->add_event( $p );
+      if ( $label = $coll->reserved_event( $p ) ) {
+        $error_msg = "$label is a reserved word";
+      } else {
+        $sm->add_event( $p );
+      }
     }
   }
   if ( $_POST['cmd'] == 'rename' && $_POST['add_text'] && $_POST['state_event'] ) $sm->rename( $_POST['state_event'], $_POST['add_text'] );
@@ -41,7 +45,7 @@ include_once "./navigation.php";
 if ( $error_msg ) {
 ?>
   <div class="alert alert-danger">
-   <strong>Warning</strong> <?php echo $error_msg; ?>
+   <strong>ERROR</strong> <?php echo $error_msg; ?>
   </div>
 <?php
 }
