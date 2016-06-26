@@ -82,10 +82,14 @@ $state_label, $state_label, ( $state_label == $_POST['state_event'] ? "checked='
 } 
 echo "  <tr class='info'>\n";
 echo "    <td></td><td></td><td></td><td></td><th class='text-center'>Event:</th>\n";
+$access_labels = Array();
+foreach( $sm->access_labels as $key => $label ) {
+  $access_label[$key] = ucfirst( strtolower( $label ) );
+}
 foreach ( $sm->events() as $idx => $event ) {
   if ( $event != 'ELSE' ) {
     printf( "    <td class='text-center'>%s</td>\n", 
-      selectbox( "${event}", Array( "Private", "Public", "Mixed" ) ) );
+      selectbox( "${event}", $access_label, $sm->access( $event ), 0, "class='event_access'" ) );
   }
 }
 echo "    <td></td>\n";

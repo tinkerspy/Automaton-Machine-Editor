@@ -30,7 +30,7 @@ int <?php echo $sm->name() ?>::event( int id ) {
   switch ( id ) {
 <?php
   foreach ( $sm->events() as $event ) {
-    if ( $event != 'ELSE' ) {
+    if ( $event != 'ELSE' && ( $sm->access( $event ) != ATM_ACCESS_PUBLIC ) ) {
       printf( "    case %s:\n      return 0;\n", $event );
     }
   }
@@ -68,6 +68,24 @@ void <?php echo $sm->name() ?>::action( int id ) {
   }
 }
 
+/* Public event methods
+ *
+ */
+
+<?php
+  foreach ( $sm->events() as $event ) {
+    if ( $event != 'ELSE' && ( $sm->access( $event ) != ATM_ACCESS_PRIVATE ) ) {
+      $fname = preg_replace( '/^evt_/', '', strtolower( $event ) );
+?>
+<?php echo $sm->name() ?>& <?php echo $sm->name()."::$fname()"; ?> {
+  trigger( <?php echo $event ?> );
+  return *this;
+}
+
+<?php
+    }
+  }
+?>
 /* Optionally override the default trigger() method
  * Control how your machine processes triggers
  */

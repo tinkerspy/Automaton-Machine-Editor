@@ -15,7 +15,12 @@ define( "ATM_ON_EXIT", "4" );
 define( "ATM_EVT_OFFSET", "5" );
 define( "ATM_UP_LEFT", "1" );
 define( "ATM_DOWN_RIGHT", "0" );
+define( "ATM_ACCESS_MIXED", "0" );
+define( "ATM_ACCESS_PUBLIC", "1" );
+define( "ATM_ACCESS_PRIVATE", "2" );
 
+$reserved_words = Array( // Uppercase reserved words that may clash with state names
+);
 
 // Represents a collection of machine definitions ( XML => manipulate => XML )
 
@@ -132,8 +137,9 @@ class ATM_Collection {
 
 class ATM_Machine {
   var $event_labels = Array( 'ELSE' );
-  var $event_access = Array();
+  var $event_access = Array(); // Mixed/Private/Public
   var $state_labels = Array( "STATE", "INDEX", "SLEEP", "ON_ENTER", "ON_LOOP", "ON_EXIT" );
+  var $access_labels = Array( 'MIXED', 'PUBLIC', 'PRIVATE' );
   var $connectors = Array();
   var $states = Array();
   var $changed = false;
@@ -250,6 +256,20 @@ class ATM_Machine {
       }
     }
     uasort( $this->states, array('ATM_Machine','machinecmp') );
+    return $this;
+  }
+
+  function access( $label, $v = null ) {
+    
+    $label = preg_replace( '/[^a-z0-9_]/i', '', strtoupper( trim( $label ) ) );
+    if ( $label && !preg_match( '/^EVT_.*/', $label ) ) $label = "EVT_". $label;
+    if ( $label && in_array( $label, $this->event_labels ) ) {
+      if ( isset( $v ) ) {
+        $this->event_access[$label] = (int) $v;
+      } else {
+        return $this->event_access[$label] ?: 0;
+      }
+    }
     return $this;
   }
 
@@ -438,7 +458,8 @@ class ATM_Machine {
     $r .= "    </states>\n";
     $r .= "    <events>\n";
     for ( $e = 0; $e < count( $this->event_labels ) - 1; $e++ ) {
-      $r .= sprintf( "      <%s index=\"%s\"/>\n", $this->event_labels[$e], $e );
+      $attr = Array( 'access' => ( strtoupper( $this->access_labels[$this->access( $this->event_labels[$e] )] ) ) );
+      $r .= sprintf( "      <%s index=\"%s\" %s/>\n", $this->event_labels[$e], $e, $this->attribs( $attr ) );
     }
     $r .= "    </events>\n";
     $r .= "    <connectors>\n";
@@ -506,6 +527,10 @@ class ATM_Machine {
       // Add the events in reverse order
       foreach ( array_keys( $r ) as $v ) {
         $this->add_event( $v );
+      }
+      // Extract the event access modes
+      foreach ( $data->machine[$idx]->{events}->children() as $child ) {
+        $this->access( $child->getName(), array_search( (string) $child['access'], $this->access_labels ) );  
       }
       // Now we can create the event -> state links
       foreach ( $data->machine[$idx]->{states}->children() as $child ) {

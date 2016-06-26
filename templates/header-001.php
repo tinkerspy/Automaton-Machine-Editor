@@ -32,6 +32,12 @@ class <?php echo $sm->name() ?>: public Machine {
       printf( "  %s& %s( int sub, atm_cb_push_t callback, int idx = 0 );\n", $sm->name(), $fname );
     }
   }
+  foreach ( $sm->events() as $event ) {
+    if ( $event != 'ELSE' && ( $sm->access( $event ) != ATM_ACCESS_PRIVATE ) ) {
+      $fname = preg_replace( '/^evt_/', '', strtolower( $event ) );
+      printf( "  %s& %s( void );\n", $sm->name(), $fname );
+    }
+  }
 ?>
 
  private:

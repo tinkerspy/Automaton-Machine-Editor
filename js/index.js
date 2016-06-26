@@ -12,6 +12,10 @@ $(document).ready(function() {
       $.get( "ajax/link.php", {  state: p[0], 'event':  p[1], 'new': this.value } );
     });
 
+    $('.event_access').on('change', function() {
+      $.get( "ajax/access.php", {  'event': this.name, 'mode':  this.value } );
+    });
+
     $("#btn_modify").click(function() {
        $("#sub_modify").toggle( "fast" );
        $("#sub_rename").hide( "fast" );
