@@ -5,6 +5,7 @@ include_once "./lib/libcontrols.php";
 
 session_start();
 
+$error_msg = '';
 if ( !$_SESSION["ATM_COLLECTION"] ) return( header( "Location: index.php" ) );
 
 // Idee: rename acties bewaren en dan direct op de source code uitvoeren alvorens te mergen...
@@ -16,7 +17,11 @@ $sm = $coll->first();
 if ( $_POST ) {
   if ( $_POST['cmd'] == 'add_state' && $_POST['add_text'] ) {
     foreach ( preg_split( '/\s+/', $_POST['add_text'] ) as $p ){
-      $sm->add_state( $p );
+      if ( $label = $coll->reserved( $p ) ) {
+        $error_msg = "$label is a reserved word";
+      } else {
+        $sm->add_state( $p );
+      }
     }
   }
   if ( $_POST['cmd'] == 'add_event' && $_POST['add_text'] ) {
@@ -32,6 +37,14 @@ if ( $_POST ) {
 }
 
 include_once "./navigation.php";
+
+if ( $error_msg ) {
+?>
+  <div class="alert alert-danger">
+   <strong>Warning</strong> <?php echo $error_msg; ?>
+  </div>
+<?php
+}
 
 $col_events = Array();
 foreach ( $sm->events() as $event ) {
