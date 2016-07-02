@@ -179,6 +179,11 @@ $hdr_ext = $_SESSION['HPPMODE'] ? 'hpp' : 'h';
     </tr>
   </tbody>
 </table>
+<a href='https://github.com/tinkerspy/Automaton/wiki/Machine-building-tutorial-2' class='btn btn-primary btn-block' id='btn_tutorial'>
+  <span class='glyphicon glyphicon-book'></span> 
+    Tutorial
+</a>
+<br>
 
 <?php
 
