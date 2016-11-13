@@ -216,7 +216,7 @@ class ATM_Machine {
   function add_connector( $name, $dir, $slots, $autostore, $broadcast ) {
 
     $name = strtoupper( preg_replace( '/[^a-z0-9]+/i', '', $name ) );
-    $this->connectors[$name] = Array( dir => strtoupper( $dir ), slots => $slots * 1, autostore => ( $autostore ? 1 : 0 ), broadcast => ( $broadcast ? 1 : 0 ) );
+    $this->connectors[$name] = Array( 'dir' => strtoupper( $dir ), 'slots' => $slots * 1, 'autostore' => ( $autostore ? 1 : 0 ), 'broadcast' => ( $broadcast ? 1 : 0 ) );
     ksort( $this->connectors );
     $this->changed = true;
     return $this;
@@ -469,7 +469,7 @@ class ATM_Machine {
     $r .= "  <machine name=\"". $this->name. "\">\n";
     $r .= "    <states>\n";
     foreach( $this->states as $state_label => $state_row ) {
-      $attr = Array( index => $state_row[ATM_INDEX] );
+      $attr = Array( 'index' => $state_row[ATM_INDEX] );
       if ( $state_row[ATM_SLEEP   ] ) $attr['sleep'   ] = 1;
       if ( $state_row[ATM_ON_ENTER] ) $attr['on_enter'] = "ENT_$state_label";
       if ( $state_row[ATM_ON_LOOP ] ) $attr['on_loop' ] = "LP_$state_label";
@@ -519,7 +519,7 @@ class ATM_Machine {
       if ( !$this->name ) return $this;
       // Extract the state names
       $r = Array();
-      foreach ( $data->machine[$idx]->{states}->children() as $child ) {
+      foreach ( $data->machine[$idx]->{'states'}->children() as $child ) {
         $r[$child->getName()] = (string) $child['index'];
       }
       asort( $r );
@@ -528,7 +528,7 @@ class ATM_Machine {
         $this->add_state( $v );
       } 
       // Set the state actions (incl ATM_SLEEP)
-      foreach ( $data->machine[$idx]->{states}->children() as $child ) {
+      foreach ( $data->machine[$idx]->{'states'}->children() as $child ) {
         foreach ( $child->attributes() as $k => $v ) {
           switch ( $k ) {
             case 'sleep':
@@ -548,7 +548,7 @@ class ATM_Machine {
       }
       // Extract the event names
       $r = Array();
-      foreach ( $data->machine[$idx]->{events}->children() as $child ) {
+      foreach ( $data->machine[$idx]->{'events'}->children() as $child ) {
           $r[$child->getName()] = (string) $child['index'];
       } 
       arsort( $r );
@@ -557,16 +557,16 @@ class ATM_Machine {
         $this->add_event( $v );
       }
       // Extract the event access modes
-      foreach ( $data->machine[$idx]->{events}->children() as $child ) {
+      foreach ( $data->machine[$idx]->{'events'}->children() as $child ) {
         $this->access( $child->getName(), array_search( (string) $child['access'], $this->access_labels ) );  
       }
       // Now we can create the event -> state links
-      foreach ( $data->machine[$idx]->{states}->children() as $child ) {
+      foreach ( $data->machine[$idx]->{'states'}->children() as $child ) {
         foreach( $child as $grandchild ) {
           $this->link( $child->getName(), $grandchild->getName(), (string) $grandchild );
         }
       } 
-      foreach ( $data->machine[$idx]->{connectors}->children() as $child ) {
+      foreach ( $data->machine[$idx]->{'connectors'}->children() as $child ) {
         $this->add_connector( $child->getName(), $child['dir'], $child['slots'], (int)$child['autostore'], (int)$child['broadcast'] );
       }
     }

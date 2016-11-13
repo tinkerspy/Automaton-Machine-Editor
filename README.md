@@ -11,6 +11,8 @@ Requirements:
 - Writable 'machines' subdirectory
 - Internet connection (for CDN based Javascript libraries)
 
+Note that it may be required to set SELINUX to disabled to write to the machines directory.
+
 Javascript libraries (linked via CDN)
 - Jquery 1.12.2
 - Twitter Bootstrap 3.3.6

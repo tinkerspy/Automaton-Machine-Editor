@@ -8,7 +8,7 @@ if ( !is_writable( "machines" ) ) {
   die( "<br>FATAL: The 'machines' subdirectory is not writable<br>" );
 }
 
-if ( !is_object( $coll ) ) {
+if ( !isset( $coll) || !is_object( $coll ) ) {
   $coll = new ATM_Collection( $_SESSION["ATM_COLLECTION"] );
 }
 $sm = $coll->first();
