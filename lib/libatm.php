@@ -184,7 +184,7 @@ class ATM_Machine {
     $arg_list = func_get_args();
     $label = array_shift( $arg_list );
     $label = preg_replace( '/[^a-z0-9_]/i', '', strtoupper( trim( $label ) ) );
-    if ( $label && !$this->states[$label] && !preg_match( '/^(\d|EVT_|ENT_|LP_|EXT_|ON_)/', $label ) ) {
+    if ( $label && !isset($this->states[$label]) && !preg_match( '/^(\d|EVT_|ENT_|LP_|EXT_|ON_)/', $label ) ) {
       $this->changed = true;
       $state_row = Array( count( $this->states ), 0, 0, 0, 0 );
       foreach ( $this->event_labels as $v ) {

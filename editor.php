@@ -54,7 +54,7 @@ $col_events = Array();
 foreach ( $sm->events() as $event ) {
   $col_events[] = $event == 'ELSE' ? $event : 
     sprintf( "<input type='radio' name='state_event' id='radio_%s' value='%s' %s> <label for='radio_%s'>%s</label>",
-               $event, $event, ( $event == $_POST['state_event'] ? "checked='checked'" : '' ), $event, $event );
+               $event, $event, ( isset( $_POST['state_event'] ) && $event == $_POST['state_event'] ? "checked='checked'" : '' ), $event, $event );
 }
 
 $col_labels = array_merge( Array( 'Sleep', 'ENTER', 'LOOP', 'EXIT' ), $col_events );
@@ -63,7 +63,7 @@ $col_events2 = Array();
 foreach ( $sm->events() as $event ) {
   $col_events2[] = $event == 'ELSE' ? $event : 
     sprintf( "<div class='radio'> <label><input type='radio' name='state_event' id='radio_%s' value='%s' %s><b>%s</b></label></div>",
-               $event, $event, ( $event == $_POST['state_event'] ? "checked='checked'" : '' ), preg_replace( '/^EVT_/', '', $event ));
+               $event, $event, ( isset( $_POST['state_event']) && $event == $_POST['state_event'] ? "checked='checked'" : '' ), preg_replace( '/^EVT_/', '', $event ));
 }
 
 $col_labels2 = array_merge( Array( 'Sleep', 'ENTER', 'LOOP', 'EXIT' ), $col_events2 );  
@@ -82,7 +82,7 @@ echo "  <tbody>\n";
 
 foreach ( $sm->table_dump() as $state_label => $state_row ) {
 printf( "  <tr>\n    <th class='info'><input type=radio name='state_event' id='radio_%s' value='%s' %s>\n      <label for='radio_%s'>%s</label>\n    </th>\n",
-$state_label, $state_label, ( $state_label == $_POST['state_event'] ? "checked='checked'" : '' ), $state_label, $state_label );
+$state_label, $state_label, ( isset( $_POST['state_event'] ) && $state_label == $_POST['state_event'] ? "checked='checked'" : '' ), $state_label, $state_label );
   for ( $i = 0; $i < 4; $i++ ) {
     $class = $i > 0 ? 'success' : 'danger';
     printf( "    <td class='text-center %s'><label class='checkbox-inline'>".
