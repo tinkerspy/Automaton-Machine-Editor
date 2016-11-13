@@ -12,6 +12,7 @@ Requirements:
 - Internet connection (for CDN based Javascript libraries)
 
 Note that it may be required to set SELINUX to disabled to write to the machines directory.
+Check the SELINUX setting with the getenforce
 
 Javascript libraries (linked via CDN)
 - Jquery 1.12.2

@@ -26,7 +26,7 @@ $sm = $coll->first();
       <?php echo menu_item( 'index.php', 'File' ) ?> 
       <?php echo menu_item( 'editor.php', 'States', is_object( $sm ) ) ?> 
       <?php echo menu_item( 'connectors.php', 'Connectors', is_object( $sm ) ) ?> 
-      <?php echo menu_item( 'cppheader.php', $_SESSION['HPPMODE'] ? '.hpp' : '.h', is_object( $sm ) ) ?> 
+      <?php echo menu_item( 'cppheader.php', isset( $_SESSION['HPPMODE'] ) ? '.hpp' : '.h', is_object( $sm ) ) ?> 
       <?php echo menu_item( 'cppcode.php', '.cpp', is_object( $sm ) ) ?> 
       <?php echo menu_item( 'atml.php', '.atml', is_object( $sm ) ) ?> 
     </ul> 
@@ -36,7 +36,7 @@ $sm = $coll->first();
 
 if ( is_object( $sm ) ) {
   printf( "<div class='well'><span class='glyphicon glyphicon-%s'></span> State Machine: %s <span class='badge' title='Machine contains %d states and %d events'>%d:%d</span></div>", 
-    $_SESSION['MODIFY'] ? 'random' : 'cog', $sm->name(), 
+    isset( $_SESSION['MODIFY'] ) ? 'random' : 'cog', $sm->name(), 
     count( $sm->states() ), count( $sm->events() ) - 1, 
     count( $sm->states() ), count( $sm->events() ) - 1 );  
 } else {

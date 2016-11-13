@@ -5,7 +5,7 @@ include_once "./lib/libcontrols.php";
 
 session_start();
 
-$coll = new ATM_Collection( $_SESSION["ATM_COLLECTION"] );
+$coll = new ATM_Collection( isset( $_SESSION["ATM_COLLECTION"] ) ? $_SESSION["ATM_COLLECTION"] : '' );
 
 if ( $_FILES ) {
   $coll->clear();
@@ -49,7 +49,7 @@ if ( $_FILES ) {
   $coll->changed( true );
 }
 
-if ( $_POST['create'] ) {
+if ( isset( $_POST['create'] ) ) {
   @mkdir( "machines/". session_id() );
   $sm = $coll->clear()->machine( 'Atm_machine' );
   @unlink( "machines/". session_id(). "/MODIFY" );
@@ -58,7 +58,7 @@ if ( $_POST['create'] ) {
   $_SESSION['HPPMODE'] = 0;
 }
 
-if ( $_POST['txt_rename'] ) {
+if ( isset( $_POST['txt_rename'] ) ) {
   $sm = $coll->first()->name( $_POST['txt_rename'] );
 }
 
@@ -71,8 +71,8 @@ if ( $_FILES && !count( $coll->machines() ) ) { ?>
 <?php }
 
 $disabled = is_object( $sm ) ? '' : 'disabled';
-$modify = $_SESSION['MODIFY'];
-$hdr_ext = $_SESSION['HPPMODE'] ? 'hpp' : 'h';
+$modify = isset( $_SESSION['MODIFY'] );
+$hdr_ext = isset( $_SESSION['HPPMODE'] ) ? 'hpp' : 'h';
 ?>
 
 <form method='POST' id='frm_create'>

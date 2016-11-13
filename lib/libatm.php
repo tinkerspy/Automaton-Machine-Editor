@@ -295,7 +295,7 @@ class ATM_Machine {
       if ( isset( $v ) ) {
         $this->event_access[$label] = (int) $v;
       } else {
-        return $this->event_access[$label] ?: 0;
+        return isset( $this->event_access[$label] ) ? $this->event_access[$label] : 0;
       }
     }
     return $this;
