@@ -11,11 +11,14 @@ Requirements:
 - Writable 'machines' subdirectory
 - Internet connection (for CDN based Javascript libraries)
 
-Note that it may be required to set SELINUX to disabled to write to the machines directory.
-Check the SELINUX setting with the getenforce
-
 Javascript libraries (linked via CDN)
 - Jquery 1.12.2
 - Twitter Bootstrap 3.3.6
 - Highlight.js 9.4.0
+
+Troubleshooting:
+- If your http server can't write to the machines subdirectory try
+disabling SELinux and rebooting.
+- If you get a 'Call to undefined function simplexml_load_string()' error in Ubuntu
+try installing php7.0.xml: sudo apt-get install php7.0-xml
 
