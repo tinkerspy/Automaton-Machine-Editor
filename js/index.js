@@ -51,7 +51,7 @@ $(document).ready(function() {
       $('#cppfile_ok').show();
     });
     $(".btn-editor").click( function() {
-      $("#cmd").val( this.name );
+      $("#cmd").val( $(this).attr("name") );
       $("#frm_editor").submit();
     });
 
