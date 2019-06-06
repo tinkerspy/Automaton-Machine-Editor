@@ -146,12 +146,12 @@ echo "</table>\n";
 </div>
  <div class="btn-group pull-right">
   <button type="button" class="btn btn-primary btn-editor" name='up_left'>
-    <span class='glyphicon glyphicon-arrow-up btn-editor' id='icn_upleft'></span>
-    <span class='glyphicon glyphicon-arrow-left btn-editor' id='icn_upleft'></span>
+    <span class='glyphicon glyphicon-arrow-up' id='icn_upleft'></span>
+    <span class='glyphicon glyphicon-arrow-left' id='icn_upleft'></span>
   </button>
   <button type="button" class="btn btn-primary btn-editor" name='down_right'>
-    <span class='glyphicon glyphicon-arrow-right btn-editor' id='icn_downright'></span>
-    <span class='glyphicon glyphicon-arrow-down btn-editor' id='icn_downright'></span>
+    <span class='glyphicon glyphicon-arrow-right' id='icn_downright'></span>
+    <span class='glyphicon glyphicon-arrow-down' id='icn_downright'></span>
   </button>
 </div>
 </form>

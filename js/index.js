@@ -8,12 +8,12 @@ $(document).ready(function() {
     });
 
     $('.link_state').on('change', function() {
-      var p = this.name.split( ":" );
+      var p = $(this).attr("name").split( ":" );
       $.get( "ajax/link.php", {  state: p[0], 'event':  p[1], 'new': this.value } );
     });
 
     $('.event_access').on('change', function() {
-      $.get( "ajax/access.php", {  'event': this.name, 'mode':  this.value } );
+      $.get( "ajax/access.php", {  'event': $(this).attr("name"), 'mode':  this.value } );
     });
 
     $("#btn_modify").click(function() {
@@ -63,7 +63,7 @@ $(document).ready(function() {
     });
 
     $('.sb_slots').on('change', function() {
-      $.get( "ajax/conn_slots.php", { 'conn': this.name, 'value': this.value } );
+      $.get( "ajax/conn_slots.php", { 'conn': $(this).attr("name"), 'value': this.value } );
     });
 
     hljs.initHighlightingOnLoad();
