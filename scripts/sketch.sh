@@ -7,9 +7,9 @@ DIR=`dirname $0`
 
 if [ $# -ne 0 ]
   then 
-    ATML=`cat $1` php -n -d "include_path=${DIR}/../lib" ${DIR}/../templates/sketch-current.php
+    ATML=`cat $1` php -d "include_path=${DIR}/../lib" ${DIR}/../templates/sketch-current.php
   else 
-   php -n -d "include_path=${DIR}/../lib" ${DIR}/../templates/sketch-current.php
+   php -d "include_path=${DIR}/../lib" ${DIR}/../templates/sketch-current.php
 fi
 
 
